@@ -19,7 +19,8 @@ class FilterOnFileExists:
 
         N0 = len(df)
         # df['ImagePath_exists'] = df['ImagePath'].apply(os.path.isfile)
-        df = df.loc[df['ImagePath'].apply(os.path.isfile)].copy()
+        df['ImagePathExists'] = df['ImagePath'].apply(os.path.isfile)
+        df = df.loc[df['ImagePathExists']].copy()
         N1 = len(df)
         logger.info('Removed {} rows'.format(N0-N1))
 
