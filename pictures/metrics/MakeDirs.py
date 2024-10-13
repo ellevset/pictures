@@ -16,7 +16,7 @@ class MakeDirs:
 
     def calc(self, df):
 
-        dirs = df['FilePath'].str.rsplit('/', 1, expand=True)[0].drop_duplicates().to_list()
+        dirs = df['FilePath'].str.rsplit('/', n=1, expand=True)[0].drop_duplicates().to_list()
         dirs = [d for d in dirs if not os.path.isdir(d)]
         logger.info('Making {} directories'.format(len(dirs)))
         for d in dirs:

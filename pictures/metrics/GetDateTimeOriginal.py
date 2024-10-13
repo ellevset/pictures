@@ -18,15 +18,16 @@ class GetDateTimeOriginal:
         df['DateTimeOriginal'] = df['exif'].apply(get)
 
         # NB! Denne funker jo kun hvis man leser fra Apple-kilde og man har denne DateAsTimerInterval
-        df.loc[df.DateTimeOriginal.isna(), 'DateTimeOriginal'] = df.loc[df.DateTimeOriginal.isna()].apply(lambda r: get_non_exif(self.d0, r['DateAsTimerInterval']),
-                                                                                                          axis=1)
+        if 'DateAsTimerInterval' in df:
+            df.loc[df.DateTimeOriginal.isna(), 'DateTimeOriginal'] = df.loc[df.DateTimeOriginal.isna()].apply(lambda r: get_non_exif(self.d0, r['DateAsTimerInterval']),
+                                                                                                              axis=1)
 
         return df
 
 
 def get(exif):
     try:
-        d = exif['DateTimeOriginal']
+        d = str(exif['EXIF DateTimeOriginal'])
         d = datetime.strptime(d, '%Y:%m:%d %H:%M:%S')
     except:
         d = pd.NaT

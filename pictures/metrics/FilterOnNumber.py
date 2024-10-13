@@ -1,6 +1,4 @@
 
-import PIL.Image
-
 import logging
 
 logger = logging.getLogger(__name__)
@@ -16,8 +14,9 @@ class FilterOnNumber:
 
     def calc(self, df):
 
-        logger.info('Keeping only a certain number {}'.format(self.N))
-        df = df.iloc[:self.N].copy()
+        if self.N:
+            logger.info('Keeping only a certain number {}'.format(self.N))
+            df = df.iloc[:self.N].copy()
         return df
 
 

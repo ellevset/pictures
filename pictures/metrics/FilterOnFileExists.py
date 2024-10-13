@@ -18,7 +18,6 @@ class FilterOnFileExists:
     def calc(self, df):
 
         N0 = len(df)
-        # df['ImagePath_exists'] = df['ImagePath'].apply(os.path.isfile)
         df['ImagePathExists'] = df['ImagePath'].apply(os.path.isfile)
         df = df.loc[df['ImagePathExists']].copy()
         N1 = len(df)

@@ -11,7 +11,7 @@ class ImageType:
 
     def calc(self, df):
 
-        df['ImageType'] = df['ImagePath'].str.rsplit('.', 1, expand=True)[1].str.upper()
+        df['ImageType'] = df['ImagePath'].str.rsplit('.', n=1, expand=True)[1].str.upper()
 
         return df
 

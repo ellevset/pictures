@@ -1,6 +1,7 @@
 
 import logging
 
+import exifread
 import PIL.Image
 import PIL.ExifTags
 
@@ -26,13 +27,9 @@ class GetExif:
 
 
 def get_exif(fp):
-    img = PIL.Image.open(fp)
+    img = open(fp, 'rb')
     try:
-        exif = {
-            PIL.ExifTags.TAGS[k]: v
-            for k, v in img._getexif().items()
-            if k in PIL.ExifTags.TAGS
-        }
+        exif = exifread.process_file(img, details=False, stop_tag='DateTimeOriginal')
     except Exception as e:
         logger.error('Cant extract Exif {}'.format(fp))
         exif = None

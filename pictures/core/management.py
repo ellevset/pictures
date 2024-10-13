@@ -15,7 +15,7 @@ except:
 from datetime import datetime
 import os
 import argparse
-from pycash.core import baselogger
+from pictures.core import baselogger
 from argparse import RawTextHelpFormatter
 
 logger = baselogger.getLogger(__name__)

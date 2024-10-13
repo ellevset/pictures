@@ -10,11 +10,11 @@ logger = logging.getLogger(__name__)
 
 class ReadAlbumData:
 
-    def __init__(self, fp, *args, **kwargs):
-        self.fp = fp
-
     def __str__(self):
         return 'ReadAlbumData'
+
+    def __init__(self, fp, *args, **kwargs):
+        self.fp = fp
 
     def calc(self, df):
 

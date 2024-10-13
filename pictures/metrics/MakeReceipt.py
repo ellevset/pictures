@@ -7,7 +7,7 @@ import shutil
 logger = logging.getLogger(__name__)
 
 
-class MakeDirs:
+class MakeReceipt:
 
     def __init__(self, dest_dir):
         self.dest_dir = dest_dir
@@ -32,4 +32,4 @@ class MakeDirs:
 
 
 def make(*args, **kwargs):
-    return MakeDirs(*args, **kwargs)
+    return MakeReceipt(*args, **kwargs)

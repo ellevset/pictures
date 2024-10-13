@@ -25,13 +25,15 @@ class ReadData:
         f = list()
         logger.info('Reading directory {}'.format(self.directory))
         for path, subdirs, files in os.walk(self.directory):
-            f.extend(files)
+            f.extend([os.path.join(path, f) for f in files if not f.startswith('.')])
             #for name in files:
             #    suffix = name.split('.', 1)[1]
             #    if suffix in self.supported_extensions:
             #        f.append(os.path.join(path, name))
 
-        dfx = pd.DataFrame(f)
+        dfx = pd.DataFrame(f, columns=['ImagePath'])
+        logger.info('Read {} files'.format(len(dfx)))
+        df = pd.concat([df, dfx])
 
         return df
 
